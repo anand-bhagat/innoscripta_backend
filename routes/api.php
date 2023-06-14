@@ -29,7 +29,11 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
 // Unprotected routes for authentication
 
-//Register a new user
+Route::prefix('news')->group(function () {
+    Route::post('/', [NewsController::class, 'getNews']);
+    Route::get('/categories', [NewsController::class, 'getCategories']);
+});
+
 Route::post('/register', [RegisterController::class, 'register']);
 
 //Login with email and password
