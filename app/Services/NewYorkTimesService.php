@@ -26,7 +26,7 @@ class NewYorkTimesService
 
         $news = [];
 
-        if ($data['status']  === 'OK') {
+        if ($data && $data['status']  === 'OK') {
             foreach ($data['response']['docs'] as $index => $article) {
                 $news[$index] = [
                     'title' => $article['headline']['main'],

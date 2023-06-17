@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\FeedController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +22,9 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'auth:sanctum'], function () {
     // Protected routes that require authentication
 
+    Route::post('/feed', [FeedController::class, 'saveFeed']);
+    Route::get('/feed', [FeedController::class, 'getFeed']);
+
     // Get the authenticated user's details
     Route::get('/user', [UserController::class, 'getUser']);
 
@@ -28,7 +33,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 });
 
 // Unprotected routes for authentication
-
 Route::prefix('news')->group(function () {
     Route::post('/', [NewsController::class, 'getNews']);
     Route::get('/categories', [NewsController::class, 'getCategories']);

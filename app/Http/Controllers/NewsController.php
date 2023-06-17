@@ -13,10 +13,9 @@ class NewsController extends Controller
     {
 
         $request->validate([
-            'search' => 'required|string',
             'start_date' => 'date_format:Y-m-d',
             'end_date' => 'date_format:Y-m-d',
-            'sources' => 'nullable|array',
+            'source' => 'nullable|string',
             'category' => 'nullable|string',
         ]);
 
@@ -24,7 +23,7 @@ class NewsController extends Controller
             'search' => $request->search,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
-            'sources' => $request->sources,
+            'source' => $request->source,
             'category' => $request->category,
         ];
 

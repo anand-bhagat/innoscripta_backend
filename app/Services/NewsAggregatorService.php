@@ -20,8 +20,8 @@ class NewsAggregatorService
 
         $defaultSources = ['NEWS_API', 'NEW_YORK_TIMES', 'THE_GUARDIAN'];
 
-        if (isset($sources)) {
-            $selectedSources = array_intersect($this->params['sources'], $defaultSources);
+        if (isset($this->params['source'])) {
+            $selectedSources = [$this->params['source']];
         } else {
             $selectedSources = $defaultSources;
         }

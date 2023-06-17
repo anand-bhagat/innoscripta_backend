@@ -30,7 +30,7 @@ class TheGuardianService
                     'main_source' => 'THE_GUARDIAN',
                     'image' => null,
                     'date' => $article['webPublicationDate'],
-                    'source' => null,
+                    'source' => 'The Guardian',
                     'url' => $article['webUrl'],
                 ];
             }
