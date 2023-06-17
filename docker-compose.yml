@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  php: 
+    build: 
+      context: .
+      target: php
+    environment:
+      - APP_ENV=${APP_ENV}
+      - CONTAINER_ROLE=app
+      - NEWS_API_KEY=<NEWS_API_KEY>
+      - NEW_YORK_TIMES_KEY=<NEW_YORK_TIMES_KEY>
+      - THE_GUARDIAN_KEY=<THE_GUARDIAN_KEY>
+      - NEWS_API_URL="https://newsapi.org/"
+      - NEW_YORK_TIMES_URL="https://api.nytimes.com/svc/"
+      - THE_GUARDIAN_URL="https://content.guardianapis.com/"
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    ports:
+      - 8000:8000
+    depends_on:
+      - database
+
+  database:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+    volumes:
+      - db-data:/var/lib/mysql
+volumes:
+  db-data: ~
+
