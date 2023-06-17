@@ -77,3 +77,9 @@ To start the Laravel backend with Docker, run the following command in the proje
 ```
 
 This command will build the Docker image for the Laravel application and start the containers. The backend will be accessible at http://localhost:8000.
+
+Run below command to migrate the tables. Run only if the migrations were failed in the above command.
+
+```bash
+    docker-compose exec php php artisan migrate
+```
